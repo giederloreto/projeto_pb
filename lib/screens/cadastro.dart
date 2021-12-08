@@ -13,6 +13,7 @@ class Cadastro extends StatefulWidget {
 class _CadastroState extends State<Cadastro> {
   @override
   final _formKey = GlobalKey<FormState>();
+  bool _isVisible = false;
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -21,6 +22,7 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     var _password;
+
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.only(top: 0, bottom: 0),
@@ -94,9 +96,19 @@ class _CadastroState extends State<Cadastro> {
                         return "Deve conter pelo menos 1 caractere especial";
                       }
                     },
-                    obscureText: true,
+                    obscureText: !_isVisible,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isVisible = !_isVisible;
+                            });
+                          },
+                          icon: _isVisible
+                              ? Icon(Icons.visibility)
+                              : Icon(Icons.visibility_off),
+                        ),
                         fillColor: Colors.grey,
                         filled: true,
                         hintText: "Senha",
