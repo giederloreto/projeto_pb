@@ -63,6 +63,9 @@ class _CadastroState extends State<Cadastro> {
                       if (value == null || value.isEmpty) {
                         return "Por favor preencha e-mail";
                       }
+                      if (!value.contains('@')) {
+                        return " E-mail invalido";
+                      }
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -82,10 +85,14 @@ class _CadastroState extends State<Cadastro> {
                         return "Por favor preencha a senha";
                       }
                       if (value.length < 8) {
-                        return "Deve conter 8 Caracteres";
+                        return "Deve conter pelo menos 8 caracteres";
                       }
-                      if (value.contains(RegExp(r"[A-Z]")))
-                        return "Deve conter 1 letra maiuscula";
+                      if (!value.contains(RegExp(r'[A-Z]'))) {
+                        return "Deve conter pelo menos 1 letra maiúscula";
+                      }
+                      if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                        return "Deve conter pelo menos 1 caractere especial";
+                      }
                     },
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,

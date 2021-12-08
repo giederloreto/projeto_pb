@@ -10,12 +10,16 @@ class ControllerCadastro {
           .then((userCredential) => print(userCredential.user!.email));
     } on FirebaseAuthException catch (e) {
       print(e);
-      Fluttertoast.showToast(
-          msg: e.message!,
-          gravity: ToastGravity.TOP,
-          backgroundColor: Colors.grey,
-          timeInSecForIosWeb: 5,
-          fontSize: 18);
+
+      if (e.message ==
+          "The email address is already in use by another account.") {
+        Fluttertoast.showToast(
+            msg: "E-mail já existe na base de dados.",
+            gravity: ToastGravity.TOP,
+            backgroundColor: Colors.grey,
+            timeInSecForIosWeb: 5,
+            fontSize: 18);
+      }
     }
   }
 }
