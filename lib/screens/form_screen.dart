@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto_pb/components/barra_forca.dart';
 import 'package:projeto_pb/controller/controller.dart';
 import 'package:projeto_pb/screens/home_screen.dart';
@@ -72,11 +73,11 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Column(
-                  /* crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start, */
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 200,
+                      height: 150,
                       width: 200,
                       child: Image.asset("assets/compassflix_logo.png"),
                     ),
@@ -200,7 +201,7 @@ class _FormScreenState extends State<FormScreen> {
                               borderRadius: BorderRadius.circular(50))),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     Row(
                       children: [
@@ -272,27 +273,19 @@ class _FormScreenState extends State<FormScreen> {
                         child: const Text("CONCLUIR CADASTRO"),
                       ),
                     ),
-                    /* Container(
-                      height: 40,
-                      alignment: Alignment.topLeft,
-                      child: TextButton(
-                        child: Text(
-                          "VOLTAR",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
-                          );
-                        },
+                    Text(
+                      "CONTERNO MÍNIMO 8 CARACTERES",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
                       ),
-                    ) */
+                    ),
+                    Text(
+                      "PELO MENOS UMA LETRA MAIÚSCULA",
+                    ),
+                    Text(
+                      "PELO MENOS UM CARACTERE ESPECIAL",
+                    ),
                   ],
                 ),
               ),

@@ -9,7 +9,7 @@ class TextoForca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.bottomRight,
       child: Text(
         forca,
         style: TextStyle(color: cor),
