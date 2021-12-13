@@ -38,14 +38,17 @@ class LoginController {
     }
   }
 
-  signup(String email, String password) async {
+  signup(String email, String password, BuildContext context) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((userCredential) => print(userCredential.user!.email));
+          .then((userCredential) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ),
+              ));
     } on FirebaseAuthException catch (e) {
-      print(e);
-
       if (e.message ==
           "The email address is already in use by another account.") {
         Fluttertoast.showToast(

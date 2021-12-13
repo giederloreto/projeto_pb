@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projeto_pb/components/barra_forca.dart';
 import 'package:projeto_pb/controller/controller.dart';
 import 'package:projeto_pb/screens/home_screen.dart';
@@ -264,13 +265,8 @@ class _FormScreenState extends State<FormScreen> {
                           if (_formKey.currentState!.validate()) {
                             await _controllerCadastro.signup(
                                 _emailController.text,
-                                _passwordController.text);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
+                                _passwordController.text,
+                                context);
                           }
                         },
                         child: const Text("CONCLUIR CADASTRO"),
