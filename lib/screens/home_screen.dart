@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:projeto_pb/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,17 +21,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "Tost",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.TOP,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
                   },
-                  child: Text("Teste Toast"))
+                  child: Text("Voltar Tela Login")),
             ],
           ),
         ),
