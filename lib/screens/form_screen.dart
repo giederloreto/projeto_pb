@@ -27,6 +27,61 @@ class _FormScreenState extends State<FormScreen> {
   var corBarra3 = Colors.white70;
   var corBarra4 = Colors.white70;
 
+  forcaForte() {
+    setState(() {
+      forcaSenha = 'Forte';
+      cor = Colors.green;
+      corBarra1 = Colors.green;
+      corBarra2 = Colors.green;
+      corBarra3 = Colors.green;
+      corBarra4 = Colors.green;
+    });
+  }
+
+  forcaMedia() {
+    setState(() {
+      forcaSenha = 'Média';
+      cor = Colors.yellow;
+      corBarra1 = Colors.yellow;
+      corBarra2 = Colors.yellow;
+      corBarra3 = Colors.yellow;
+      corBarra4 = Colors.white70;
+    });
+  }
+
+  forcaFraca() {
+    setState(() {
+      forcaSenha = 'Fraca';
+      cor = Colors.deepOrange;
+      corBarra1 = Colors.deepOrange;
+      corBarra2 = Colors.deepOrange;
+      corBarra3 = Colors.white70;
+      corBarra4 = Colors.white70;
+    });
+  }
+
+  forcaMFraca() {
+    setState(() {
+      forcaSenha = 'Muito Fraca';
+      cor = Colors.deepOrange;
+      corBarra1 = Colors.deepOrange;
+      corBarra2 = Colors.deepOrange;
+      corBarra3 = Colors.white70;
+      corBarra4 = Colors.white70;
+    });
+  }
+
+  forcaSemSenha() {
+    setState(() {
+      forcaSenha = 'Digite um senha';
+      cor = Colors.white;
+      corBarra1 = Colors.red;
+      corBarra2 = Colors.white70;
+      corBarra3 = Colors.white70;
+      corBarra4 = Colors.white70;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,64 +176,39 @@ class _FormScreenState extends State<FormScreen> {
                       height: 30,
                     ),
                     TextFormField(
+                      onChanged: (value) {
+                        if (value == null || value.isEmpty) {
+                          forcaSemSenha();
+                        } else {
+                          if (value.length <= 8) {
+                            forcaMFraca();
+                          } else {
+                            if (value.length >= 8 &&
+                                !value.contains(RegExp(r'[A-Z]'))) {
+                              forcaFraca();
+                            } else {
+                              if (!value.contains(
+                                  RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                                forcaForte();
+                              }
+                            }
+                          }
+                        }
+                      },
                       controller: _passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          setState(() {
-                            forcaSenha = 'Digite um senha';
-                            cor = Colors.white;
-                            corBarra1 = Colors.red;
-                            corBarra2 = Colors.white70;
-                            corBarra3 = Colors.white70;
-                            corBarra4 = Colors.white70;
-                          });
                           return "Por favor preencha a senha";
                         }
                         if (value.length < 8) {
                           return "Deve conter pelo menos 8 caracteres";
-                        } else {
-                          setState(() {
-                            forcaSenha = 'Muito Fraca';
-                            cor = Colors.deepOrange;
-                            corBarra1 = Colors.deepOrange;
-                            corBarra2 = Colors.deepOrange;
-                            corBarra3 = Colors.white70;
-                            corBarra4 = Colors.white70;
-                          });
                         }
                         if (!value.contains(RegExp(r'[A-Z]'))) {
-                          setState(() {
-                            forcaSenha = 'Fraca';
-                            cor = Colors.deepOrange;
-                            corBarra1 = Colors.deepOrange;
-                            corBarra2 = Colors.deepOrange;
-                            corBarra3 = Colors.white70;
-                            corBarra4 = Colors.white70;
-                          });
                           return "Deve conter pelo menos 1 letra maiúscula";
-                        } else {
-                          setState(() {
-                            forcaSenha = 'Média';
-                            cor = Colors.yellow;
-                            corBarra1 = Colors.yellow;
-                            corBarra2 = Colors.yellow;
-                            corBarra3 = Colors.yellow;
-                            corBarra4 = Colors.white70;
-                          });
                         }
                         if (!value
                             .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                          setState(() {});
                           return "Deve conter pelo menos 1 caractere especial";
-                        } else {
-                          setState(() {
-                            forcaSenha = 'Forte';
-                            cor = Colors.green;
-                            corBarra1 = Colors.green;
-                            corBarra2 = Colors.green;
-                            corBarra3 = Colors.green;
-                            corBarra4 = Colors.green;
-                          });
                         }
                       },
                       obscureText: !_isVisible,
@@ -273,18 +303,24 @@ class _FormScreenState extends State<FormScreen> {
                         child: const Text("CONCLUIR CADASTRO"),
                       ),
                     ),
+                    Text("CONTERNO MÍNIMO 8 CARACTERES",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        )),
                     Text(
-                      "CONTERNO MÍNIMO 8 CARACTERES",
+                      "PELO MENOS UMA LETRA MAIÚSCULA",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      "PELO MENOS UMA LETRA MAIÚSCULA",
-                    ),
-                    Text(
                       "PELO MENOS UM CARACTERE ESPECIAL",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),
