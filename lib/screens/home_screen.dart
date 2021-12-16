@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_pb/components/toprated.dart';
 import 'package:projeto_pb/components/trending.dart';
-import 'package:projeto_pb/components/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,8 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List trendingmovies = [];
-  List topratedmovies = [];
-  List tv = [];
+
   final String apikey = "66efbc171cd29e93fa8c3ed29e8b268d";
   final readacesstoken =
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NmVmYmMxNzFjZDI5ZTkzZmE4YzNlZDI5ZThiMjY4ZCIsInN1YiI6IjYxYjllMTJiZDE0NDQzMDA2Njk2ZWY4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qPMfzNN9c0kZAvwDUnfDEvd0JmHLC4iZbSA3EbxtAwc";
@@ -33,12 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
 
     Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
-    Map topratedresult = await tmdbWithCustomLogs.v3.movies.getTopRated();
-    Map tvresult = await tmdbWithCustomLogs.v3.tv.getPouplar();
+
     setState(() {
       trendingmovies = trendingresult['results'];
-      topratedmovies = topratedresult['results'];
-      tv = tvresult['results'];
     });
     print(trendingmovies);
   }
@@ -71,7 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(50))),
           ),
         ),
-        actions: [Icon(Icons.filter_list_alt)],
+        actions: [
+          IconButton(
+            alignment: Alignment.centerLeft,
+            color: Colors.red,
+            onPressed: () {},
+            icon: Icon(Icons.favorite),
+          ),
+        ],
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

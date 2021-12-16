@@ -10,16 +10,23 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      //padding: EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          //SizedBox(height: 10),
           Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
+              child: GridView.builder(
+                  //scrollDirection: Axis.vertical,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 0,
+                    childAspectRatio: 0.58,
+                  ),
+                  padding: EdgeInsets.all(5),
                   itemCount: trending.length,
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -44,7 +51,8 @@ class TrendingMovies extends StatelessWidget {
                                     )));
                       },
                       child: Container(
-                        width: 140,
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
                         child: Column(
                           children: [
                             Container(
@@ -55,7 +63,7 @@ class TrendingMovies extends StatelessWidget {
                                           trending[index]['poster_path']),
                                 ),
                               ),
-                              height: 300,
+                              height: 150,
                             ),
                             SizedBox(height: 5),
                             Container(
