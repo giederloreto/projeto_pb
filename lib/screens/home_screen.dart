@@ -82,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Container(
           height: 50,
           child: Text(
-            "CompassMovie",
-            style: TextStyle(),
+            "CompassFlix",
+            style: TextStyle(color: Colors.grey),
           ),
           alignment: Alignment.center,
         ),

@@ -303,25 +303,6 @@ class _FormScreenState extends State<FormScreen> {
                         child: const Text("CONCLUIR CADASTRO"),
                       ),
                     ),
-                    Text("CONTERNO MÍNIMO 8 CARACTERES",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        )),
-                    Text(
-                      "PELO MENOS UMA LETRA MAIÚSCULA",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      "PELO MENOS UM CARACTERE ESPECIAL",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
                   ],
                 ),
               ),
