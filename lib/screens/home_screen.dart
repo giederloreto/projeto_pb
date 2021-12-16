@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_pb/components/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List trendingmovies = [];
+  List trendingMovies = [];
 
   final String apikey = "66efbc171cd29e93fa8c3ed29e8b268d";
   final readacesstoken =
@@ -32,10 +33,36 @@ class _HomeScreenState extends State<HomeScreen> {
     Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
 
     setState(() {
-      trendingmovies = trendingresult['results'];
+      trendingMovies = trendingresult['results'];
     });
-    print(trendingmovies);
+    //allMovies();
   }
+
+  /* allMovies() {
+    trendingMovies = trendingMoviesAll;
+  }
+
+  searchMovies(String searchTitle) {
+    trendingMoviesAll.forEach((element) {
+      if (customesContainers(searchTitle)) {
+        trendingMovies.add(element);
+      }
+    });
+    setState(() {});
+  }
+
+  customesContainers(String titleMovies) {
+    var isContains = false;
+    trendingMovies.forEach((element) {
+      String title = element.title.Trim()  'e';
+      if (title.contains(titleMovies)) {
+        isContains = true;
+      }
+    });
+    print(isContains);
+    print(titleMovies);
+    return isContains;
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
             Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back),
@@ -53,25 +81,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         title: Container(
           height: 50,
-          child: TextFormField(
-            textAlign: TextAlign.start,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                fillColor: Colors.grey,
-                filled: true,
-                hintText: "Pesquisar",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50))),
+          child: Text(
+            "CompassMovie",
+            style: TextStyle(),
           ),
+          alignment: Alignment.center,
         ),
         actions: [
-          IconButton(
-            alignment: Alignment.centerLeft,
-            color: Colors.red,
-            onPressed: () {},
-            icon: Icon(Icons.favorite),
-          ),
+          SizedBox(
+            width: 60,
+          )
         ],
       ),
       body: Container(
@@ -87,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             TrendingMovies(
-              trending: trendingmovies,
+              trending: trendingMovies,
             ),
           ],
         ),

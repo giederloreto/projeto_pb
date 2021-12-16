@@ -44,11 +44,14 @@ class Description extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                    bottom: 10,
-                    child: modified_text(text: '⭐ Average Rating - ' + vote)),
               ])),
           SizedBox(height: 15),
+          Positioned(
+              bottom: 5,
+              child: modified_text(
+                text: '⭐ Average Rating - ' + vote,
+                color: Colors.white,
+              )),
           Container(
               padding: EdgeInsets.all(10),
               child: modified_text(
@@ -58,8 +61,11 @@ class Description extends StatelessWidget {
               )),
           Container(
               padding: EdgeInsets.only(left: 10),
-              child:
-                  modified_text(text: 'Releasing On - ' + launch_on, size: 14)),
+              child: modified_text(
+                text: 'Releasing On - ' + launch_on,
+                size: 14,
+                color: Colors.white,
+              )),
           Row(
             children: [
               Container(

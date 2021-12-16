@@ -55,7 +55,7 @@ class _FormScreenState extends State<FormScreen> {
       cor = Colors.deepOrange;
       corBarra1 = Colors.deepOrange;
       corBarra2 = Colors.deepOrange;
-      corBarra3 = Colors.white70;
+      corBarra3 = Colors.orange;
       corBarra4 = Colors.white70;
     });
   }
@@ -65,7 +65,7 @@ class _FormScreenState extends State<FormScreen> {
       forcaSenha = 'Muito Fraca';
       cor = Colors.deepOrange;
       corBarra1 = Colors.deepOrange;
-      corBarra2 = Colors.deepOrange;
+      corBarra2 = Colors.orange;
       corBarra3 = Colors.white70;
       corBarra4 = Colors.white70;
     });

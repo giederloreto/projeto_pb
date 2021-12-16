@@ -4,6 +4,7 @@ import 'package:projeto_pb/screens/password_reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_password_strength/flutter_password_strength.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:projeto_pb/screens/thanks.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -185,6 +186,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ThanksScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "S2",
+                          style: TextStyle(color: Colors.lightGreenAccent),
+                        ))
                   ],
                 ),
               ),
